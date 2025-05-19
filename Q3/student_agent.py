@@ -40,7 +40,7 @@ class Agent(object):
     """Agent that acts randomly."""
     def __init__(self):
         self.action_space = gym.spaces.Box(-1.0, 1.0, (21,), np.float64)
-        self.actor = Pi_FC()
+        self.actor = Pi_FC(obs_size=67,action_size=21)
         self.checkpoint = torch.load('actor.ckpt') 
         self.actor.load_state_dict(self.checkpoint['actor'])
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
